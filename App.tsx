@@ -1,36 +1,50 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, ViewStyle, TextStyle } from "react-native";
+import React, { useState } from "react";
+import { View, FlatList } from "react-native";
+import { styles } from "./AppStyle";
+
+import todos from "./data.json";
+
+// I
+import { ITodo } from "./interfaces/ITodo";
+
+// Comps
+import Header from "./components/Header/Header";
+import Todo from "./components/Todo/Todo";
+import AddTodo from "./components/AddTodo/AddTodo";
 
 export default function App() {
+  const [list, setList] = useState<ITodo[]>(todos);
+
+  const handleDeleteTodo = (id: number) =>
+    setList((prev) => prev.filter((item) => id !== item.id));
+
+  const handleAddTodo = (text: string) => {
+    const item: ITodo = {
+      text,
+      id: Math.random(),
+    };
+
+    setList((prev) => [item, ...prev]);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Open up App.tsx to start working on your app!
-      </Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Header />
+      <View style={styles.inner_container}>
+        <AddTodo handleAddTodo={handleAddTodo} />
+        <View style={styles.list}>
+          <FlatList
+            data={list}
+            renderItem={({ item }) => (
+              <Todo
+                item={item}
+                handleDeleteTodo={handleDeleteTodo}
+                key={item.id}
+              />
+            )}
+          />
+        </View>
+      </View>
     </View>
   );
 }
-
-interface Styles {
-  container: ViewStyle;
-  text: TextStyle;
-}
-
-const styles = StyleSheet.create<Styles>({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    color: "purple",
-  },
-});
