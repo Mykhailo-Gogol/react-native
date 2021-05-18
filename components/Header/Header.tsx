@@ -1,14 +1,18 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React from 'react'
 
-import { styles } from "./HeaderStyle";
+// Native
+import { View, Text } from 'react-native'
 
+// Styles
+import { styles } from './HeaderStyle'
+
+// 
 const Header: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Header</Text>
     </View>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

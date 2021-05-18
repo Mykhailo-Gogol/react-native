@@ -12,7 +12,7 @@ const listReducer = (state = innitialState, action: TItemList) => {
     case DELETE_ITEM:
       return state.filter((el) => el.id !== action.payload)
     default:
-      return innitialState
+      return state
   }
 }
 

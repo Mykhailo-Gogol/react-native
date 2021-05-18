@@ -1,8 +1,12 @@
 import React from 'react'
-import { TouchableOpacity, Text } from 'react-native'
 
+// Styles
 import { styles } from './TodoItemStyle'
 
+// Native
+import { TouchableOpacity, Text } from 'react-native'
+
+// Interface
 import { IProps } from '../../../interfaces/ITodo'
 
 const TodoItem = ({ item, handleDeleteTodo }: IProps) => {

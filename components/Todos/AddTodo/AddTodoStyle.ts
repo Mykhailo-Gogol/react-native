@@ -1,11 +1,11 @@
-import { StyleSheet, TextInput, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from 'react-native'
 
-interface IStylesS {
-  input: TextInput;
-  inner_container: ViewStyle;
+interface Styles {
+  inner_container: ViewStyle
+  input: TextStyle
 }
 
-export const styles = StyleSheet.create({
+export const styles = StyleSheet.create<Styles>({
   inner_container: {
     marginBottom: 30,
     marginTop: 30,
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 20,
     borderWidth: 1,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderRadius: 10,
-    borderColor: "#F5ECCD",
+    borderColor: '#F5ECCD',
   },
-});
+})

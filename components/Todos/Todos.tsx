@@ -1,5 +1,7 @@
-import { styles } from './TodosStyle'
 import React from 'react'
+
+// Styles
+import { styles } from './TodosStyle'
 
 // Native
 import { View, FlatList } from 'react-native'
@@ -9,11 +11,11 @@ import { ITodo } from '../../interfaces/ITodo'
 import { IRootReducer } from '../../interfaces/IRootReducer'
 
 // Redux
+import { useSelector, useDispatch } from 'react-redux'
 import {
   listAddItemAction,
   listDeleteItemAction,
 } from '../../redux/actions/list'
-import { useSelector, useDispatch } from 'react-redux'
 
 // Comps
 import TodoItem from './TodoItem/TodoItem'
@@ -27,12 +29,11 @@ const Todos: React.FC = () => {
     dispatch(listDeleteItemAction(id))
   }
   const handleAddTodo = (text: string) => {
-    const item: ITodo = {
+    const task: ITodo = {
       text,
       id: Math.random(),
     }
-
-    dispatch(listAddItemAction(item))
+    dispatch(listAddItemAction(task))
   }
   return (
     <View style={styles.inner_container}>

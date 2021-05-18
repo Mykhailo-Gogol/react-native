@@ -1,5 +1,7 @@
+import React from 'react'
+
+// Styles
 import { styles } from './AddTodoStyle'
-import React, { useState } from 'react'
 
 // Native
 import { View, TextInput, Button } from 'react-native'
@@ -9,9 +11,8 @@ import { IAddProps } from '../../../interfaces/ITodo'
 import { IRootReducer } from '../../../interfaces/IRootReducer'
 
 // Redux
-import { inputChangeAction } from '../../../redux/actions/input'
 import { useSelector, useDispatch } from 'react-redux'
-
+import { inputChangeAction } from '../../../redux/actions/input'
 import { inputClearAction } from '../../../redux/actions/input'
 
 const AddTodo = ({ handleAddTodo }: IAddProps) => {
@@ -25,7 +26,6 @@ const AddTodo = ({ handleAddTodo }: IAddProps) => {
 
   const addItem = () => {
     handleAddTodo(inputValue)
-
     dispatch(inputClearAction())
   }
 
@@ -37,7 +37,7 @@ const AddTodo = ({ handleAddTodo }: IAddProps) => {
         onChangeText={handleInputChange}
         style={styles.input}
       />
-      <Button title="Add todo" onPress={addItem} />
+      <Button title="Add todo" onPress={() => addItem()} />
     </View>
   )
 }
